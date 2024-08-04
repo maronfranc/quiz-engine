@@ -1,0 +1,70 @@
+{
+  "id": "1",
+  "title": "title 1",
+  "description": "description 1",
+  "imageUrl": "https://placehold.co/300x200",
+  "questions": [
+    {
+      "type": "v1_single_question",
+      "id": "single_question_1",
+      "question": "Question <question>",
+      "title": "Title here",
+      "description": "Single question description",
+      "imageUrl": "https://placehold.co/300x200",
+      "choices": [
+        {
+          "id": "sq1_choice_1",
+          "statement": "Go to single question 2",
+          "questionIdToGo": "single_question_2"
+        },
+        {
+          "id": "sq1_choice_2",
+          "statement": "Go to multiple question 1",
+          "questionIdToGo": "multiple_question_1"
+        },
+        {
+          "id": "sq1_choice_3",
+          "statement": "Go to input question 1",
+          "questionIdToGo": "input_question_1"
+        }
+      ]
+    },
+    {
+      "type": "v1_multiple_question",
+      "id": "multiple_question_1",
+      "question": "Question here",
+      "title": "Title here",
+      "description": "Multiple question 1",
+      "imageUrl": "https://placehold.co/300x200",
+      "choices": [
+        {
+          "id": "mq1_choice_1",
+          "statement": "Go to multiple 2",
+          "questionIdToGo": "multiple_question_1",
+          "priority": 1
+        },
+        {
+          "id": "mq1_choice_2",
+          "statement": "Go to single 1",
+          "questionIdToGo": "single_question_1",
+          "priority": 2
+        },
+        {
+          "id": "mq1_choice_3",
+          "statement": "Go to input question 1",
+          "questionIdToGo": "input_question_1",
+          "priority": 3
+        }
+      ]
+    },
+    {
+      "type": "v1_input_question",
+      "id": "input_question_1",
+      "question": "Question here",
+      "title": "Title here",
+      "description": "Give your caracter a name",
+      "inputLimit": 64,
+      "questionIdToGo": "input_question_2"
+    }
+  ]
+}
