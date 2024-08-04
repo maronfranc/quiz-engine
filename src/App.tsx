@@ -5,6 +5,7 @@ import ProgressBar from './components/ProgressBar';
 import InputText from './components/form/InputText';
 import data from "../data/quiz-data.json";
 import { Quiz } from './Quiz.interface';
+import QuizModal from './components/QuizModal';
 const quiz = data as Quiz;
 
 interface QuizFormState {
@@ -41,9 +42,10 @@ function App() {
     setFormState((prev) => ({ ...prev, multipleAnswerIds: data }));
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  // function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(formData: QuizFormState) {
     console.log(formState);
+    console.log(`[Log:formData]:`, formData);
   }
 
   function goToPrevious() {
@@ -72,39 +74,7 @@ function App() {
       </header>
 
       <main>
-        <form onSubmit={handleSubmit}>
-          <button className="primary" type="submit">
-            Confirm answer
-          </button>
-          <InputText
-            id={"19802371289"}
-            label="Type your answer here:"
-            placeholder="Type your answer here"
-            value={formState.input}
-            onChange={handleSingleValueChange} />
-
-          <InputRadioGroup
-            name="singleQuestion"
-            options={[
-              { label: 'oijoaisjd', value: "oaijdoijs" },
-              { label: '198234821u', value: "198234821u" },
-              { label: '891739', value: "oajsdfoasd19028s" },
-            ]}
-            selectedValue={formState.singleAnswerId}
-            label={"Pick one of these options:"}
-            onChange={handleSingleValueChange} />
-
-          <InputCheckboxGroup
-            name="multipleQuestion"
-            options={[
-              { label: '12312j', value: "12312j" },
-              { label: '456457645', value: "456457645" },
-              { label: '76476', value: "76476" },
-            ]}
-            selectedValues={formState.multipleAnswerIds}
-            label={"Choose one of these options:"}
-            onChange={handleMultipleValueChange} />
-        </form>
+      Main
       </main>
 
       <aside>
@@ -121,6 +91,12 @@ function App() {
 
       <footer>
         <button onClick={() => goToPrevious()}>Previous</button>
+
+        <QuizModal
+          btnLabel="Open next question"
+          handleSubmitData={handleSubmit}
+          quizQuestion={quiz.questions[currentIndex]} />
+
         <button onClick={() => goToNext()}>Next</button>
       </footer>
     </div>

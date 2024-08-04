@@ -126,6 +126,11 @@ html {
     border: 0;
 }
 
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
 a {
     font-weight: 500;
     color: #646cff;
@@ -178,6 +183,10 @@ button.success {
     color: var(--button-success-text);
 }
 
+button.danger {
+    background-color: var(--button-error-bg);
+}
+
 button:disabled {
     background-color: var(--button-disabled-bg);
     color: var(--button-disabled-text);
@@ -204,7 +213,7 @@ button.warning:hover {
     background-color: var(--button-warning-bg-hover);
 }
 
-button.error:hover {
+button.danger:hover {
     background-color: var(--button-error-bg-hover);
 }
 
@@ -336,6 +345,7 @@ input[type=text] {
 
 .input-clickable-container label {
     pointer-events: none;
+    text-align: center;
 }
 
 .input-clickable-container:has(input[type="radio"]) {
@@ -359,3 +369,16 @@ label {
     display: inline-block;
     vertical-align: middle;
 } */
+
+/* ===== ===== ===== Sidebar ===== ===== ===== */
+dialog .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+dialog .title {
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+}
