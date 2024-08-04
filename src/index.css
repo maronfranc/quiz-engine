@@ -370,7 +370,7 @@ label {
     vertical-align: middle;
 } */
 
-/* ===== ===== ===== Sidebar ===== ===== ===== */
+/* ===== ===== ===== Modal ===== ===== ===== */
 dialog .dialog-header {
     display: flex;
     justify-content: space-between;
@@ -381,4 +381,61 @@ dialog .title {
     font-weight: bold;
     text-align: center;
     margin: 0 auto;
+    font-size: var(--font-size-4);
+}
+
+.modal::-webkit-backdrop,
+.modal::backdrop {
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(0.1rem);
+}
+
+.modal {
+    border-radius: var(--border-radius);
+}
+
+.modal[open] {
+    -webkit-animation: slide-up 1000ms forwards, fade-in 500ms forwards;
+    animation: slide-up 1000ms forwards, fade-in 500ms forwards;
+}
+
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
 }

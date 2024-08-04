@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import InputCheckboxGroup from './components/form/InputCheckboxGroup';
-import InputRadioGroup from './components/form/InputRadioGroup';
 import ProgressBar from './components/ProgressBar';
-import InputText from './components/form/InputText';
 import data from "../data/quiz-data.json";
 import { Quiz } from './Quiz.interface';
 import QuizModal from './components/QuizModal';
@@ -14,37 +11,11 @@ interface QuizFormState {
   multipleAnswerIds: string[];
 }
 
-const INITIAL_STATE: QuizFormState = {
-  input: '',
-  singleAnswerId: '',
-  multipleAnswerIds: [],
-}
-
 function App() {
-  const [formState, setFormState] = useState<QuizFormState>(INITIAL_STATE);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  function handleSingleValueChange(value: string) {
-    const quizQuestion = quiz.questions[currentIndex];
-
-    if (quizQuestion.type === 'v1_single_question') {
-      setFormState((prev) => ({ ...prev, singleAnswerId: value }));
-      return;
-    }
-
-    if (quizQuestion.type === 'v1_input_question') {
-      setFormState((prev) => ({ ...prev, input: value }));
-      return;
-    }
-  }
-
-  function handleMultipleValueChange(data: string[]) {
-    setFormState((prev) => ({ ...prev, multipleAnswerIds: data }));
-  }
-
-  // function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   function handleSubmit(formData: QuizFormState) {
-    console.log(formState);
     console.log(`[Log:formData]:`, formData);
   }
 
@@ -62,8 +33,14 @@ function App() {
   function goToTab(index: number) {
     if (index !== currentIndex) {
       setCurrentIndex(index);
+      setIsModalOpen(true);
     }
   }
+
+  function handleModalClose() {
+    setIsModalOpen(false);
+  }
+
 
   return (
     <div className="grid">
@@ -74,7 +51,7 @@ function App() {
       </header>
 
       <main>
-      Main
+        Main
       </main>
 
       <aside>
@@ -92,12 +69,17 @@ function App() {
       <footer>
         <button onClick={() => goToPrevious()}>Previous</button>
 
-        <QuizModal
-          btnLabel="Open next question"
-          handleSubmitData={handleSubmit}
-          quizQuestion={quiz.questions[currentIndex]} />
+        <button onClick={() => setIsModalOpen(true)}>
+          Open next question
+        </button>
 
         <button onClick={() => goToNext()}>Next</button>
+
+        <QuizModal
+          handleSubmitData={handleSubmit}
+          isOpen={isModalOpen}
+          handleClose={handleModalClose}
+          quizQuestion={quiz.questions[currentIndex]} />
       </footer>
     </div>
   );
