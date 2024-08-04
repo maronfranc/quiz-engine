@@ -15,8 +15,10 @@ function App() {
       </main>
 
       <aside>
-          <div> A </div>
-          <div> B </div>
+          <button className="primary"> 1 </button>
+          <button className="secondary"> 2 </button>
+          <button className="success"> 3 </button>
+          <button disabled> 4 </button>
       </aside>
 
       <footer>
@@ -27,4 +29,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

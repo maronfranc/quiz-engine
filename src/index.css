@@ -27,6 +27,41 @@
     --font-size-4: 1.728rem;
     --font-size-5: 2.074rem;
     --font-size-6: 2.488rem;
+
+    --color-primary-bg: #202C39;
+    --color-primary-text: #fff;
+
+    --color-accent: #e74c3c;
+    --color-background: #f9f9f9;
+
+    --color-card-bg: #fff;
+    --color-secondary-bg: #34495e;
+    --color-secondary-text: #34495e;
+    --color-modal-bg: rgba(0, 0, 0, 0.8);
+
+    --button-primary-bg: #202C39;
+    --button-primary-text: #ecf0f1;
+
+    --button-secondary-bg: #34495e;
+    --button-secondary-text: #ecf0f1;
+
+    --button-success-bg: #2ecc71;
+    --button-success-text: #ffffff;
+
+    --button-warning-bg: #f39c12;
+    --button-warning-text: #ffffff;
+
+    --button-error-bg: #c0392b;
+    --button-error-text: #ffffff;
+
+    --button-disabled-bg: #34495e;
+    --button-disabled-text: #ecf0f1;
+
+    --button-primary-bg-hover: #c0392b;
+    --button-secondary-bg-hover: #2c3e50;
+    --button-success-bg-hover: #27ae60;
+    --button-warning-bg-hover: #e67e22;
+    --button-error-bg-hover: #a93226;
 }
 
 @media screen and (min-width: 800px) {
@@ -116,6 +151,32 @@ button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* ===== ===== Button ===== ===== */
+button.primary {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+}
+
+button.secondary {
+    background-color: var(--button-secondary-bg);
+    color: var(--button-secondary-text);
+}
+
+button.success {
+    background-color: var(--button-success-bg);
+    color: var(--button-success-text);
+}
+
+button:disabled {
+    background-color: var(--button-disabled-bg);
+    color: var(--button-disabled-text);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+
 /* ===== ===== Grid ===== ===== */
 .grid {
     height: 100%;
@@ -168,7 +229,7 @@ button:focus-visible {
 
 .progress-bar {
     height: 100%;
-    background-color: green;
+    background-color: var(--color-secondary-bg);
     transition: width 0.5s ease-in-out;
     border-radius: 0 0 0 var(--progress-bar-radius);
 }
@@ -180,3 +241,10 @@ button:focus-visible {
     font-weight: bold;
     color: #fff;
 }
+
+/* ===== ===== Sidebar ===== ===== */
+aside button {
+    margin: var(--space-1) 0;
+}
+
+
