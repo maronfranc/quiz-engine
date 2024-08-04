@@ -11,10 +11,15 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    --width-inputs: 250px;
+    --width-textarea: 450px;
+    --height-textarea: 250px;
 
     --sidebar-width: 32px;
     --progress-bar-height: 25px;
     --progress-bar-radius: 50px;
+
+    --border-radius: 8px;
 
     --space-1: 4px;
     --space-2: 8px;
@@ -32,12 +37,18 @@
     --color-primary-text: #fff;
 
     --color-accent: #e74c3c;
-    --color-background: #f9f9f9;
+    --color-background: #a9a9a9;
 
     --color-card-bg: #fff;
     --color-secondary-bg: #34495e;
     --color-secondary-text: #34495e;
     --color-modal-bg: rgba(0, 0, 0, 0.8);
+
+    --color-success: #4caf50;
+    --color-disabled: #c0c0c0;
+    --color-background-checked: maroon;
+    --color-border: #ccc;
+    --color-text: #333;
 
     --button-primary-bg: #202C39;
     --button-primary-text: #ecf0f1;
@@ -57,11 +68,11 @@
     --button-disabled-bg: #34495e;
     --button-disabled-text: #ecf0f1;
 
-    --button-primary-bg-hover: #c0392b;
-    --button-secondary-bg-hover: #2c3e50;
-    --button-success-bg-hover: #27ae60;
-    --button-warning-bg-hover: #e67e22;
-    --button-error-bg-hover: #a93226;
+    --button-primary-bg-hover: pink;
+    --button-secondary-bg-hover: pink;
+    --button-success-bg-hover: pink;
+    --button-warning-bg-hover: pink;
+    --button-error-bg-hover: pink;
 }
 
 @media screen and (min-width: 800px) {
@@ -177,7 +188,27 @@ button:disabled {
     opacity: 0.3;
 }
 
-/* ===== ===== Grid ===== ===== */
+button.primary:hover {
+    background-color: var(--button-primary-bg-hover);
+}
+
+button.secondary:hover {
+    background-color: var(--button-secondary-bg-hover);
+}
+
+button.success:hover {
+    background-color: var(--button-success-bg-hover);
+}
+
+button.warning:hover {
+    background-color: var(--button-warning-bg-hover);
+}
+
+button.error:hover {
+    background-color: var(--button-error-bg-hover);
+}
+
+/* ===== ===== ===== Grid ===== ===== ===== */
 .grid {
     height: 100%;
     width: 100%;
@@ -214,7 +245,7 @@ button:disabled {
     margin-right: var(--sidebar-width);
 }
 
-/* ===== ===== ProgressBar ===== ===== */
+/* ===== ===== ===== ProgressBar ===== ===== ===== */
 .progress-bar-container {
     position: fixed;
     z-index: 99;
@@ -242,9 +273,89 @@ button:disabled {
     color: #fff;
 }
 
-/* ===== ===== Sidebar ===== ===== */
+/* ===== ===== ===== Sidebar ===== ===== ===== */
 aside button {
     margin: var(--space-1) 0;
 }
 
+/* ===== ===== ===== Form ===== ===== ===== */
+fieldset {
+    border: none;
+}
 
+input[type=checkbox],
+input[type=radio] {
+    display: none;
+}
+
+fieldset legend {
+    font-size: var(--font-size-3);
+    text-align: center;
+}
+
+input:invalid {
+    background-color: var(--button-error-bg);
+}
+
+.radio-group,
+.checkbox-group {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+input[type=text] {
+    width: 100%;
+    height: auto;
+    background-color: var(--color-background);
+    color: var(--color-primary-text);
+}
+
+.input-clickable-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.input-clickable {
+    --square-size: 120px;
+    width: var(--square-size);
+    height: var(--square-size);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    background-color: var(--color-background);
+    color: var(--color-primary-text);
+    transition: background-color 0.3s ease;
+}
+
+.input-clickable.checked,
+.input-clickable.selected {
+    background-color: var(--color-background-checked);
+}
+
+.input-clickable-container label {
+    pointer-events: none;
+}
+
+.input-clickable-container:has(input[type="radio"]) {
+    border-radius: 50%;
+}
+
+.input-clickable-container:has(input[type="checkbox"]) {
+    border-radius: var(--border-radius);
+}
+
+input[type="text"] {
+    padding: var(--space-3);
+    border: 1px solid var(--color-secondary-bg);
+    border-radius: var(--border-radius);
+    font-family: var(--font-family-secondary);
+}
+
+/* input,
+label {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+} */

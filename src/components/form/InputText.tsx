@@ -4,7 +4,8 @@ interface Props {
   id: string;
   label: string;
   value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  // onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value :string) => void;
   placeholder?: string;
   ariaDescription?: string;
 }
@@ -13,17 +14,21 @@ function InputText({
   id,
   label,
   value,
-  onChange,
+  onChange: parentOnChange,
   placeholder,
   ariaDescription,
 }: Props) {
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    parentOnChange(e.target.value);
+  } 
+
   const ariaDescribedBy = `${id}-describeBy`;
 
   return (
-    <div>
-      <label htmlFor={id} id={`${id}-label`}>
+    <fieldset>
+      <legend id={`${id}-label`}>
         {label}
-      </label>
+      </legend>
 
       <input
         type="text"
@@ -32,15 +37,14 @@ function InputText({
         onChange={onChange}
         placeholder={placeholder}
         aria-labelledby={`${id}-label`}
-        aria-describedby={ariaDescribedBy}
-        className="form-input" />
+        aria-describedby={ariaDescribedBy} />
 
       {ariaDescribedBy && (
         <p aria-hidden id={ariaDescribedBy} className="sr-only">
           {ariaDescription && 'Please enter your text.'}
         </p>
       )}
-    </div>
+    </fieldset>
   );
 }
 

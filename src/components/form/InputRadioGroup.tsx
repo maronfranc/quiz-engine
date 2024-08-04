@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface RadioOption {
   value: string;
   label: string;
@@ -9,7 +7,8 @@ interface Props {
   name: string;
   options: RadioOption[];
   selectedValue: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  // onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: string) => void;
   label: string;
 }
 
@@ -21,17 +20,21 @@ function InputRadioGroup({
   label,
 }: Props) {
   return (
-    <fieldset>
+    <fieldset className="radio-group">
       <legend>{label}</legend>
       {options.map(option => (
-        <div key={option.value}>
+        <div
+          className={`input-clickable input-clickable-container ${selectedValue === option.value ? 'selected' : ''}`}
+
+          onClick={() => onChange(option.value)}
+          key={option.value}>
           <input
             type="radio"
             id={option.value}
             name={name}
             value={option.value}
             checked={selectedValue === option.value}
-            onChange={onChange}
+            onChange={() => { }}
             aria-labelledby={option.value} />
           <label htmlFor={option.value}>{option.label}</label>
         </div>

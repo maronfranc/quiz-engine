@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface CheckboxOption {
   value: string;
   label: string;
@@ -20,28 +18,30 @@ function InputCheckboxGroup({
   onChange,
   label,
 }: Props) {
-  function handleCheckboxChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value;
-    const newSelectedValues = event.target.checked
-      ? [...selectedValues, value]
-      : selectedValues.filter(item => item !== value);
+  function handleCheckboxChange(value: string) {
+    const newSelectedValues = selectedValues.includes(value)
+      ? selectedValues.filter(v => v !== value)
+      : [...selectedValues, value];
     onChange(newSelectedValues);
   }
 
   return (
-    <fieldset>
+    <fieldset className="checkbox-group">
       <legend>{label}</legend>
       {options.map(option => (
-        <div key={option.value}>
+        <div
+          id={option.value}
+          className={`input-clickable input-clickable-container ${selectedValues.includes(option.value) ? 'checked' : ''}`}
+          onClick={() => handleCheckboxChange(option.value)}
+          key={option.value}>
+          <label htmlFor={option.value}>{option.label}</label>
           <input
             type="checkbox"
-            id={option.value}
             value={option.value}
             name={name}
             checked={selectedValues.includes(option.value)}
-            onChange={handleCheckboxChange}
+            onChange={() => {}}
             aria-labelledby={option.value} />
-          <label htmlFor={option.value}>{option.label}</label>
         </div>
       ))}
     </fieldset>
