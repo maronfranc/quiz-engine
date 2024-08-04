@@ -1,10 +1,13 @@
-import './App.css'
+import ProgressBar from './components/ProgressBar';
 
 function App() {
   return (
     <div className="grid">
       <header>
-        Header
+        <ProgressBar
+          label="Answer progress"
+          value={85} total={100}
+        />
       </header>
 
       <main>
@@ -12,12 +15,8 @@ function App() {
       </main>
 
       <aside>
-        <div>
-          A
-        </div>
-        <div>
-          B
-        </div>
+          <div> A </div>
+          <div> B </div>
       </aside>
 
       <footer>
