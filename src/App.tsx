@@ -4,6 +4,7 @@ import data from "../data/quiz-data.json";
 import { Quiz } from './Quiz.interface';
 import QuizModal from './components/QuizModal';
 import AnswerPath, { QuestionAnswer } from './components/AnswerPath';
+import Parallax from './components/Parallax';
 const quiz = data as Quiz;
 
 interface QuizFormState {
@@ -16,19 +17,6 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [questionAnswers, setQuestionAnswers] = useState<QuestionAnswer[]>([]);
-
-  useEffect(() => {
-    /** @see https://stackoverflow.com/a/66547345 */
-    if (document && quiz.imageUrl) {
-      document.body.style.background = `url(${quiz.imageUrl}) no-repeat center center`;
-      document.body.style.backgroundSize = "cover";
-      document.body.style.backgroundAttachment = "fixed";
-    }
-
-    return () => {
-      document.body.style.background = "";
-    }
-  }, []);
 
   function handleSubmit(formData: QuizFormState) {
     const question = quiz.questions[currentIndex];
@@ -59,37 +47,41 @@ function App() {
     setIsModalOpen(false);
   }
 
+  const isFinished = questionAnswers.length === quiz.questions.length;
+  const isNotAvailableYet = currentIndex >= questionAnswers.length;
+  const isLastQuestion = currentIndex === quiz.questions.length - 1;
+  const isAlreadyAnswered = currentIndex < questionAnswers.length;
+
   return (
     <div className="grid">
-      <div className="background-tube-tv-effect"></div>
-
       <header>
         <ProgressBar
           value={questionAnswers.length}
           total={quiz.questions.length}
           label="Answer progress" />
+        <Parallax
+          title={quiz.title}
+          paragraph={quiz.description}
+          backgroundImage={quiz.imageUrl} />
       </header>
 
       <main>
-        <h1> {quiz.title} </h1>
-        <p> {quiz.description} </p>
         <AnswerPath questionAnswers={questionAnswers} />
       </main>
 
       <aside>
         {quiz.questions.map((_, index) => {
-          const current = index === currentIndex ? "accent" : "";
-          const answered = index < questionAnswers.length ? "success" : "";
-          const isDisabled = index > questionAnswers.length;
+          const isNotReadyYet = index > questionAnswers.length;
+          const current = index === currentIndex && "accent";
+          const answered = index < questionAnswers.length && "success";
           return <button
-            disabled={isDisabled}
+            disabled={isNotReadyYet}
             className={`btn-sidebar ${current || answered}`}
             key={index}
             onClick={() => goToTab(index)}>
             {index + 1}
-
             <span className="sr-only">
-              {!isDisabled
+              {!isNotReadyYet
                 ? `Open question number: ${index + 1}.`
                 : `Question number ${index + 1} is diabled. Complete previous questions.`}
             </span>
@@ -104,25 +96,26 @@ function App() {
           &larr;
         </button>
 
-        <button onClick={() => setIsModalOpen(true)}>
-          Open question
+        <button
+          disabled={isFinished}
+          onClick={() => setIsModalOpen(true)}>
+          {!isFinished
+            ? "Open question"
+            : "You answered all questions"}
         </button>
 
         <button
-          disabled={
-            currentIndex >= questionAnswers.length ||
-            currentIndex === quiz.questions.length - 1}
+          disabled={isNotAvailableYet || isLastQuestion}
           onClick={() => goToNext()}>
           &rarr;
         </button>
-
       </footer>
 
       <QuizModal
         handleSubmitData={handleSubmit}
         isOpen={isModalOpen}
         quizQuestion={quiz.questions[currentIndex]}
-        isAlreadyAnswered={currentIndex < questionAnswers.length}
+        isAlreadyAnswered={isAlreadyAnswered}
         handleClose={handleModalClose} />
     </div>
   );

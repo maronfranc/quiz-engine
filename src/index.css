@@ -10,14 +10,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    --tube-tv-effect-space: 2px;
-
     --sidebar-width: 64px;
     --bottom-bar-height: 32px;
     --progress-bar-height: 25px;
-
     --progress-bar-radius: 50px;
-
     --border-radius: 8px;
 
     --space-1: 4px;
@@ -129,18 +125,49 @@ h1 {
     margin: var(--space-2) 0;
 }
 
-/* ===== ===== Image background ===== ===== */
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    min-height: 100vh;
+.readable-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    color: var(--color-text);
+    font-size: var(--font-size-3);
+    line-height: 1.4;
+    padding: var(--space-2);
+}
+
+/* ===== ===== Parallax ===== ===== */
+.parallax-section {
     position: relative;
-    overflow: auto;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    color: var(--color-text);
     z-index: -99;
 }
 
+.parallax-section .content {
+    max-width: 90%;
+    margin-top: calc(var(--progress-bar-height) + var(--space-4));
+}
+
+.parallax-section h1 {
+    margin: 0;
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+.parallax-section p {
+    margin: 10px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
 .background-tube-tv-effect {
+    --tube-tv-effect-space: 2px;
     position: fixed;
     top: 0;
     left: 0;
@@ -161,6 +188,48 @@ body {
             transparent var(--tube-tv-effect-space),
             transparent calc(2 * var(--tube-tv-effect-space)));
 }
+
+/* ===== ===== ===== Grid ===== ===== ===== */
+.grid {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.grid main {
+    margin: var(--progress-bar-height) var(--sidebar-width) 0 0;
+    padding-bottom: calc(var(--bottom-bar-height) + var(--space-4));
+    width: 100%;
+    height: 100%;
+}
+
+.grid aside {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: var(--bottom-bar-height);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: var(--sidebar-width);
+}
+
+.grid footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    max-height: var(--bottom-bar-height);
+    padding: var(--space-3) var(--space-4);
+}
+
+
 
 /* ===== ===== Color ===== ===== */
 .primary {
@@ -191,11 +260,11 @@ button {
     font-family: inherit;
     cursor: pointer;
     transition: border-color 0.25s;
-    background-color: var(--color-bg);
-    color: var(--color-background-text);
     font-size: var(--font-size-1);
     border-radius: var(--border-radius);
     text-transform: uppercase;
+    background-color: var(--color-secondary-bg);
+    color: var(--color-secondary-text);
 }
 
 button:hover {
@@ -210,11 +279,7 @@ button:focus-visible {
 button:disabled {
     background-color: var(--color-disabled);
     color: var(--color-disabled-text);
-}
-
-button:disabled {
     cursor: not-allowed;
-    opacity: 0.3;
 }
 
 button.primary:hover {
@@ -235,47 +300,6 @@ button.warning:hover {
 
 button.danger:hover {
     background-color: var(--color-danger-bg-hover);
-}
-
-/* ===== ===== ===== Grid ===== ===== ===== */
-.grid {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.grid main {
-    margin: var(--progress-bar-height) var(--sidebar-width) 0 0;
-    padding-bottom: var(--bottom-bar-height);
-    width: 100%;
-    height: 100%;
-}
-
-.grid aside {
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: var(--bottom-bar-height);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    width: var(--sidebar-width);
-}
-
-.grid footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: transparent;
-    padding: var(--space-3) var(--space-4);
-    /* margin-right: var(--sidebar-width); */
-    max-height: var(--bottom-bar-height);
 }
 
 /* ===== ===== ===== ProgressBar ===== ===== ===== */
