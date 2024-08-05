@@ -11,7 +11,6 @@ interface Props {
 }
 
 function AnswerPath({ questionAnswers }: Props) {
-  console.log(JSON.stringify(questionAnswers, null, 2))
   return (
     <div>
       {questionAnswers.map((q, index) => {
@@ -30,8 +29,15 @@ function AnswerPath({ questionAnswers }: Props) {
 
             <div className="space-between">
               {question.choices.map((c) => (
-                <div className={`card ${c.id === answer.singleAnswerId ||
-                  answer.multipleAnswerIds.includes(c.id) ? "success" : "danger"} `}>
+                <div
+                  className={`image-container card ${c.id === answer.singleAnswerId ||
+                    answer.multipleAnswerIds.includes(c.id) ? "success" : "danger"}  `}
+                  style={{
+                    backgroundImage: c.imageUrl && `url(${c.imageUrl})`,
+                    backgroundSize: c.imageUrl && "cover",
+                    backgroundPosition: c.imageUrl && "center",
+                  }}
+                >
                   {c.statement}
                 </div>))}
             </div>
@@ -39,7 +45,7 @@ function AnswerPath({ questionAnswers }: Props) {
         }
 
         if (question.type === 'v1_input_question') {
-          return <div className="answer-container" key={index}>
+          return <div className="answer-container " key={index}>
             <h2 className="title">
               {index + 1}. {question.title}
             </h2>

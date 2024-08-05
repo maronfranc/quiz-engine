@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProgressBar from './components/ProgressBar';
 import data from "../data/quiz-data.json";
 import { Quiz } from './Quiz.interface';
@@ -16,6 +16,19 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [questionAnswers, setQuestionAnswers] = useState<QuestionAnswer[]>([]);
+
+  useEffect(() => {
+    /** @see https://stackoverflow.com/a/66547345 */
+    if (document && quiz.imageUrl) {
+      document.body.style.background = `url(${quiz.imageUrl}) no-repeat center center`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundAttachment = "fixed";
+    }
+
+    return () => {
+      document.body.style.background = "";
+    }
+  }, []);
 
   function handleSubmit(formData: QuizFormState) {
     const question = quiz.questions[currentIndex];
@@ -48,6 +61,8 @@ function App() {
 
   return (
     <div className="grid">
+      <div className="background-tube-tv-effect"></div>
+
       <header>
         <ProgressBar
           value={questionAnswers.length}
@@ -99,12 +114,13 @@ function App() {
           &rarr;
         </button>
 
-        <QuizModal
-          handleSubmitData={handleSubmit}
-          isOpen={isModalOpen}
-          handleClose={handleModalClose}
-          quizQuestion={quiz.questions[currentIndex]} />
       </footer>
+
+      <QuizModal
+        handleSubmitData={handleSubmit}
+        isOpen={isModalOpen}
+        handleClose={handleModalClose}
+        quizQuestion={quiz.questions[currentIndex]} />
     </div>
   );
 }

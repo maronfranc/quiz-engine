@@ -14,6 +14,7 @@ interface SingleChoice {
   statement: string;
   /** Another question id. Nil mean the quiz ended. */
   questionIdToGo?: string | null;
+  imageUrl?: string;
 }
 
 interface MultipleChoice {
@@ -23,6 +24,7 @@ interface MultipleChoice {
   questionIdToGo: string | null;
   /** Number to choose wich `questionIdToGo` to use */
   priority: number;
+  imageUrl?: string;
 }
 type Choice = SingleChoice | MultipleChoice;
 

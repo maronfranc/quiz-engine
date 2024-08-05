@@ -94,16 +94,21 @@ function QuizModal({
       ref={dialogRef}
       onClick={handleBackdropClick}
       onClose={handleClose}>
-      <div className="dialog-header">
+      <div className="modal-header">
         <span className="title">{quizQuestion.title}</span>
         <button aria-label="Close" className="danger" onClick={closeModal}>
-          <span aria-hidden> X </span>
+          <span aria-hidden> x </span>
         </button>
+      </div>
+
+      <div className="image-container">
+        <img className="image" src={quizQuestion.imageUrl} />
       </div>
 
       <p className="description">
         {quizQuestion.description}
       </p>
+
 
       <form method="dialog" onSubmit={handleSubmit}>
         {quizQuestion.type === 'v1_input_question' &&
@@ -119,7 +124,11 @@ function QuizModal({
           <InputRadioGroup
             name="singleQuestion"
             options={(quizQuestion as SingleQuestion).choices
-              .map((c) => ({ value: c.id, label: c.statement }))}
+              .map((c) => ({
+                value: c.id,
+                label: c.statement,
+                imageUrl: c.imageUrl,
+              }))}
             selectedValue={formState.singleAnswerId}
             label={(quizQuestion as SingleQuestion).question}
             onChange={handleSingleValueChange} />}
@@ -128,16 +137,20 @@ function QuizModal({
           <InputCheckboxGroup
             name="multipleQuestion"
             options={(quizQuestion as MultipleQuestion).choices
-              .map((c) => ({ value: c.id, label: c.statement }))}
+              .map((c) => ({
+                value: c.id,
+                label: c.statement,
+                imageUrl: c.imageUrl,
+              }))}
             selectedValues={formState.multipleAnswerIds}
             label={quizQuestion.question}
             onChange={handleMultipleValueChange} />}
 
-        <div className="space-between">
-          <button type="button" onClick={closeModal}>
+        <div className="modal-button-container space-between">
+          <button type="button" className="secondary" onClick={closeModal}>
             Cancel
           </button>
-          <button className="secondary" type="submit">
+          <button className="primary" type="submit">
             Confirm answer
           </button>
         </div>

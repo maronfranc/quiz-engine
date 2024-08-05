@@ -1,6 +1,7 @@
 interface CheckboxOption {
   value: string;
   label: string;
+  imageUrl?: string;
 }
 
 interface Props {
@@ -26,24 +27,38 @@ function InputCheckboxGroup({
   }
 
   return (
-    <fieldset className="checkbox-group">
+    <fieldset>
       <legend>{label}</legend>
-      {options.map(option => (
-        <div
-          id={option.value}
-          className={`input-clickable input-clickable-container ${selectedValues.includes(option.value) ? 'checked' : ''}`}
-          onClick={() => handleCheckboxChange(option.value)}
-          key={option.value}>
-          <label htmlFor={option.value}>{option.label}</label>
-          <input
-            type="checkbox"
-            value={option.value}
-            name={name}
-            checked={selectedValues.includes(option.value)}
-            onChange={() => {}}
-            aria-labelledby={option.value} />
-        </div>
-      ))}
+
+      <div className="checkbox-group">
+        {options.map(option => (
+          <div
+            id={option.value}
+            className={`input-clickable-container ${selectedValues.includes(option.value) && 'checked'}`}
+            onClick={() => handleCheckboxChange(option.value)}
+            style={{
+              backgroundImage: option.imageUrl && `url(${option.imageUrl})`,
+              backgroundSize: option.imageUrl && "cover",
+              backgroundPosition: option.imageUrl && "center",
+            }}
+            key={option.value}
+          >
+            <label
+              className="image-subtitle"
+              htmlFor={option.value}>
+              {option.label}
+            </label>
+            <input
+              type="checkbox"
+              value={option.value}
+              name={name}
+              checked={selectedValues.includes(option.value)}
+              onChange={() => { }}
+              aria-labelledby={option.value} />
+          </div>
+        ))}
+
+      </div>
     </fieldset>
   );
 }
