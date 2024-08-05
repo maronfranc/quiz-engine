@@ -4,18 +4,14 @@
     font-weight: 400;
 
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    --width-inputs: 250px;
-    --width-textarea: 450px;
-    --height-textarea: 250px;
 
-    --sidebar-width: 32px;
+    --sidebar-width: 64px; 
+    --bottom-bar-height: 32px;
     --progress-bar-height: 25px;
     --progress-bar-radius: 50px;
 
@@ -146,16 +142,57 @@ h1 {
     line-height: 1.1;
 }
 
+.card {
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.title {
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+    font-size: var(--font-size-4);
+}
+
+.description {
+    text-align: justify;
+    font-size: var(--font-size-3);
+    /* margin: var(--space-2) 0  var(--space-2) var(--space-4); */
+}
+
+/* ===== ===== Color ===== ===== */
+.primary {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+}
+
+.accent {
+    background-color: var(--color-accent);
+    color: var(--button-secondary-text);
+}
+
+.success {
+    background-color: var(--button-success-bg);
+    color: var(--button-success-text);
+}
+
+.danger {
+    background-color: var(--button-error-bg);
+}
+
+/* ===== ===== Button ===== ===== */
 button {
-    border-radius: 4px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
-    font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
     cursor: pointer;
     transition: border-color 0.25s;
+    background-color: var(--color-background);
+    font-size: var(--font-size-1);
+    border-radius: var(--border-radius);
 }
 
 button:hover {
@@ -165,26 +202,6 @@ button:hover {
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* ===== ===== Button ===== ===== */
-button.primary {
-    background-color: var(--button-primary-bg);
-    color: var(--button-primary-text);
-}
-
-button.secondary {
-    background-color: var(--button-secondary-bg);
-    color: var(--button-secondary-text);
-}
-
-button.success {
-    background-color: var(--button-success-bg);
-    color: var(--button-success-text);
-}
-
-button.danger {
-    background-color: var(--button-error-bg);
 }
 
 button:disabled {
@@ -222,10 +239,12 @@ button.danger:hover {
     height: 100%;
     width: 100%;
     display: flex;
+    flex-direction: column;
 }
 
 .grid main {
     margin: var(--progress-bar-height) var(--sidebar-width) 0 0;
+    padding-bottom: var(--bottom-bar-height);
     width: 100%;
 }
 
@@ -233,7 +252,7 @@ button.danger:hover {
     position: fixed;
     right: 0;
     top: 0;
-    bottom: 0;
+    bottom: var(--bottom-bar-height);
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -251,7 +270,8 @@ button.danger:hover {
     align-items: center;
     background-color: transparent;
     padding: var(--space-3) var(--space-4);
-    margin-right: var(--sidebar-width);
+    /* margin-right: var(--sidebar-width); */
+    max-height: var(--bottom-bar-height);
 }
 
 /* ===== ===== ===== ProgressBar ===== ===== ===== */
@@ -310,7 +330,6 @@ input:invalid {
 .checkbox-group {
     display: flex;
     justify-content: space-evenly;
-
 }
 
 input[type=text] {
@@ -370,25 +389,21 @@ label {
     vertical-align: middle;
 } */
 
-/* ===== ===== ===== Modal ===== ===== ===== */
+/* ===== ===== ===== Dialog Modal ===== ===== ===== */
 dialog .dialog-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-dialog .title {
-    font-weight: bold;
-    text-align: center;
+.dialog-header .title {
     margin: 0 auto;
-    font-size: var(--font-size-4);
 }
 
 .modal::-webkit-backdrop,
 .modal::backdrop {
     overflow: hidden;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(0.1rem);
 }
 
 .modal {
@@ -438,4 +453,12 @@ dialog .title {
     100% {
         transform: translateY(0%);
     }
+}
+
+/* ===== ===== Answer ===== ===== */
+.answer-container {
+    /* padding: var(--space-4); */
+    margin: var(--space-3) var(--sidebar-width) var(--space-3) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
 }

@@ -101,6 +101,10 @@ function QuizModal({
         </button>
       </div>
 
+      <p className="description">
+        {quizQuestion.description}
+      </p>
+
       <form method="dialog" onSubmit={handleSubmit}>
         {quizQuestion.type === 'v1_input_question' &&
           <InputText
