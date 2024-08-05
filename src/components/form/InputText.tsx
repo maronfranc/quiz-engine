@@ -4,8 +4,8 @@ interface Props {
   id: string;
   label: string;
   value: string;
-  // onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChange: (value: string) => void;
+  disabled: boolean;
   placeholder?: string;
   ariaDescription?: string;
 }
@@ -17,6 +17,7 @@ function InputText({
   onChange: parentOnChange,
   placeholder,
   ariaDescription,
+  disabled,
 }: Props) {
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     parentOnChange(e.target.value);
@@ -32,14 +33,15 @@ function InputText({
       </legend>
 
       <div className="input-text-container">
-      <input
-        type="text"
-        id={id}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        aria-labelledby={`${id}-label`}
-        aria-describedby={ariaDescribedBy} />
+        <input
+          type="text"
+          id={id}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          aria-labelledby={`${id}-label`}
+          disabled={disabled}
+          aria-describedby={ariaDescribedBy} />
       </div>
 
       {ariaDescribedBy && (

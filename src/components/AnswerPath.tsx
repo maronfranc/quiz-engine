@@ -12,11 +12,11 @@ interface Props {
 
 function AnswerPath({ questionAnswers }: Props) {
   return (
-    <div>
+    <div className="answer-container">
       {questionAnswers.map((q, index) => {
         const { question, answer } = q;
         if (question.type === 'v1_single_question' || question.type === 'v1_multiple_question') {
-          return <div className="answer-container" key={index}>
+          return <div className="answer-card" key={index}>
             <h2 className="title">
               {index + 1}. {question.title}
             </h2>
@@ -45,7 +45,7 @@ function AnswerPath({ questionAnswers }: Props) {
         }
 
         if (question.type === 'v1_input_question') {
-          return <div className="answer-container " key={index}>
+          return <div className="answer-card" key={index}>
             <h2 className="title">
               {index + 1}. {question.title}
             </h2>

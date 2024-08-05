@@ -7,6 +7,7 @@ import { MultipleQuestion, QuizQuestion, SingleQuestion } from "../Quiz.interfac
 interface Props {
   handleSubmitData: (formState: QuizFormState) => void;
   quizQuestion: QuizQuestion;
+  isAlreadyAnswered: boolean;
   handleClose?: () => void;
   isOpen?: boolean;
 }
@@ -28,6 +29,7 @@ function QuizModal({
   handleClose: parentHandleClose,
   handleSubmitData: parentHandleSubmit,
   isOpen,
+  isAlreadyAnswered,
 }: Props) {
   const [formState, setFormState] = useState<QuizFormState>(INITIAL_STATE);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -90,7 +92,6 @@ function QuizModal({
 
   return <div>
     <dialog
-      className='modal'
       ref={dialogRef}
       onClick={handleBackdropClick}
       onClose={handleClose}>
@@ -118,6 +119,7 @@ function QuizModal({
             value={formState.input}
             placeholder="Type your answer here"
             ariaDescription={quizQuestion.question}
+            disabled={isAlreadyAnswered}
             onChange={handleSingleValueChange} />}
 
         {quizQuestion.type === 'v1_single_question' &&
@@ -150,7 +152,9 @@ function QuizModal({
           <button type="button" className="secondary" onClick={closeModal}>
             Cancel
           </button>
-          <button className="primary" type="submit">
+          <button
+            disabled={isAlreadyAnswered}
+            className="primary" type="submit">
             Confirm answer
           </button>
         </div>

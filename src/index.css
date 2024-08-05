@@ -11,11 +11,11 @@
     -moz-osx-font-smoothing: grayscale;
 
     --tube-tv-effect-space: 2px;
-    --tube-tv-effect-space-sm: 1px;
 
     --sidebar-width: 64px;
     --bottom-bar-height: 32px;
     --progress-bar-height: 25px;
+
     --progress-bar-radius: 50px;
 
     --border-radius: 8px;
@@ -32,47 +32,35 @@
     --font-size-5: 2.074rem;
     --font-size-6: 2.488rem;
 
-    --color-primary-bg: #202C39;
-    --color-primary-text: #fff;
+    --color-text: #fff;
+    --color-background-text: #363636;
+    --color-primary-bg: #420808;
+    --color-primary-text: var(--color-text);
+    --color-primary-bg-hover: maroon;
 
-    --color-accent: #e74c3c;
-    --color-background: #a9a9a9;
+    --color-secondary-bg: #094747;
+    --color-secondary-text: #ecf0f1;
+    --color-secondary-bg-hover: #006565;
 
-    --color-card-bg: #fff;
-    --color-secondary-bg: #34495e;
-    --color-secondary-text: #34495e;
-    --color-modal-bg: rgba(0, 0, 0, 0.8);
+    --color-success: #2b632d;
+    --color-success-text: var(--color-text);
+    --color-success-bg-hover: #4caf50;
 
-    --color-success: #4caf50;
+    --color-warning: #bf7a0b;
+    --color-warning-text: var(--color-text);
+    --color-warning-bg-hover: #f39c12;
+
+    --color-danger: #781616;
+    --color-danger-text: var(--color-text);
+    --color-danger-bg-hover: #960c0c;
+
     --color-disabled: #c0c0c0;
-    --color-background-checked: maroon;
+    --color-disabled-text: #ecf0f1;
+
+    --color-accent: #02115e;
+    --color-bg: #d1d1d1;
+    --color-bg-checked: maroon;
     --color-border: #ccc;
-    --color-text: #333;
-
-    --button-primary-bg: #202C39;
-    --button-primary-text: #ecf0f1;
-
-    --button-secondary-bg: #34495e;
-    --button-secondary-text: #ecf0f1;
-
-    --button-success-bg: #2ecc71;
-    --button-success-text: #ffffff;
-
-    --button-warning-bg: #f39c12;
-    --button-warning-text: #ffffff;
-
-    --button-error-bg: #c0392b;
-    --button-error-text: #ffffff;
-
-    --button-disabled-bg: #34495e;
-    --button-disabled-text: #ecf0f1;
-
-    /* TODO fix colors*/
-    --button-primary-bg-hover: pink;
-    --button-secondary-bg-hover: pink;
-    --button-success-bg-hover: pink;
-    --button-warning-bg-hover: pink;
-    --button-error-bg-hover: pink;
 }
 
 @media screen and (min-width: 800px) {
@@ -176,22 +164,23 @@ body {
 
 /* ===== ===== Color ===== ===== */
 .primary {
-    background-color: var(--button-primary-bg);
-    color: var(--button-primary-text);
+    background-color: var(--color-primary-bg);
+    color: var(--color-primary-text);
 }
 
 .accent {
     background-color: var(--color-accent);
-    color: var(--button-secondary-text);
+    color: var(--color-secondary-text);
 }
 
 .success {
-    background-color: var(--button-success-bg);
-    color: var(--button-success-text);
+    background-color: var(--color-success);
+    color: var(--color-success-text);
 }
 
 .danger {
-    background-color: var(--button-error-bg);
+    background-color: var(--color-danger);
+    color: var(--color-danger-text);
 }
 
 /* ===== ===== Button ===== ===== */
@@ -202,13 +191,15 @@ button {
     font-family: inherit;
     cursor: pointer;
     transition: border-color 0.25s;
-    background-color: var(--color-background);
+    background-color: var(--color-bg);
+    color: var(--color-background-text);
     font-size: var(--font-size-1);
     border-radius: var(--border-radius);
+    text-transform: uppercase;
 }
 
 button:hover {
-    border-color: #646cff;
+    border-color: var(--color-border);
 }
 
 button:focus,
@@ -217,8 +208,8 @@ button:focus-visible {
 }
 
 button:disabled {
-    background-color: var(--button-disabled-bg);
-    color: var(--button-disabled-text);
+    background-color: var(--color-disabled);
+    color: var(--color-disabled-text);
 }
 
 button:disabled {
@@ -227,23 +218,23 @@ button:disabled {
 }
 
 button.primary:hover {
-    background-color: var(--button-primary-bg-hover);
+    background-color: var(--color-primary-bg-hover);
 }
 
 button.secondary:hover {
-    background-color: var(--button-secondary-bg-hover);
+    background-color: var(--color-secondary-bg-hover);
 }
 
 button.success:hover {
-    background-color: var(--button-success-bg-hover);
+    background-color: var(--color-success-bg-hover);
 }
 
 button.warning:hover {
-    background-color: var(--button-warning-bg-hover);
+    background-color: var(--color-warning-bg-hover);
 }
 
 button.danger:hover {
-    background-color: var(--button-error-bg-hover);
+    background-color: var(--color-danger-bg-hover);
 }
 
 /* ===== ===== ===== Grid ===== ===== ===== */
@@ -302,7 +293,7 @@ button.danger:hover {
 
 .progress-bar {
     height: 100%;
-    background-color: var(--color-secondary-bg);
+    background-color: var(--color-accent);
     transition: width 0.5s ease-in-out;
     border-radius: 0 0 0 var(--progress-bar-radius);
 }
@@ -312,17 +303,18 @@ button.danger:hover {
     right: var(--space-4);
     font-size: var(--font-size-1);
     font-weight: bold;
-    color: #fff;
+    color: var(--color-text);
 }
 
 /* ===== ===== ===== Sidebar ===== ===== ===== */
 aside button {
     margin: var(--space-1) 0;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
 }
 
 /* ===== ===== ===== Form ===== ===== ===== */
 fieldset {
-    border: none;
+    border-radius: var(--border-radius);
 }
 
 input[type=checkbox],
@@ -336,7 +328,7 @@ fieldset legend {
 }
 
 input:invalid {
-    background-color: var(--button-error-bg);
+    background-color: var(--color-danger);
 }
 
 .radio-group,
@@ -358,8 +350,10 @@ input:invalid {
 
 input[type=text] {
     height: auto;
-    background-color: var(--color-background);
-    color: var(--color-primary-text);
+    background-color: var(--color-bg);
+    color: var(--color-background-text);
+    /* font-weight: 500; */
+    font-size: var(--font-size-2);
     width: 100%;
 }
 
@@ -375,15 +369,16 @@ input[type=text] {
     height: var(--square-size);
     border: 1px solid var(--color-border);
     cursor: pointer;
-    background-color: var(--color-background);
-    color: var(--color-primary-text);
+    background-color: var(--color-bg);
+    color: var(--color-background-text);
     transition: background-color 0.3s ease;
     margin: var(--space-1);
 }
 
 .input-clickable-container.checked,
 .input-clickable-container.selected {
-    background-color: var(--color-background-checked);
+    background-color: var(--color-bg-checked);
+    border: 1px solid transparent;
 }
 
 .input-clickable-container label {
@@ -417,31 +412,41 @@ label {
 dialog .modal-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    margin: var(--space-3) var(--space-3);
 }
 
-.modal-header .title {
-    margin: 0 auto;
+dialog .modal-header .title {
+    margin-right: var(--space-3);
 }
 
-.modal-button-container {
+dialog .modal-button-container {
     margin-top: var(--space-4);
+    padding: 0 var(--space-3) var(--space-4) var(--space-3);
 }
 
-.modal::-webkit-backdrop,
-.modal::backdrop {
+dialog p.description {
+    margin-left: var(--space-3);
+}
+
+dialog::-webkit-backdrop,
+dialog::backdrop {
     overflow: hidden;
     background: rgba(0, 0, 0, 0.5);
 }
 
-.modal {
-    max-height: 100vh;
+dialog {
     border-radius: var(--border-radius);
+    background-color: var(--color-secondary-bg);
+    padding: var(--space-2) 0;
 }
 
-.modal[open] {
+dialog[open] {
     -webkit-animation: slide-up 1000ms forwards, fade-in 500ms forwards;
     animation: slide-up 1000ms forwards, fade-in 500ms forwards;
+}
+
+form[method="dialog"] {
+    margin: 0 var(--space-3);
 }
 
 @-webkit-keyframes fade-in {
@@ -486,10 +491,22 @@ dialog .modal-header {
 
 /* ===== ===== Answer ===== ===== */
 .answer-container {
+    display: flex;
+}
+
+@media (max-width: 800px) {
+    .answer-container {
+        display: block;
+    }
+}
+
+.answer-card {
     margin: var(--space-3) var(--sidebar-width) var(--space-3) var(--space-3);
-    border: 1px solid var(--color-border);
+    padding: var(--space-3) var(--space-3);
+    border: 1px solid transparent;
     border-radius: var(--border-radius);
-    background-color: var(--color-background);
+    background-color: var(--color-secondary-bg);
+    color: var(--color-secondary-text);
 }
 
 /* ===== ===== Image ===== ===== */
@@ -498,10 +515,10 @@ dialog .modal-header {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: var(--space-1);
-    color: #fff;
-    background: rgba(0, 0, 0, 0.6);
     text-align: center;
+    padding: var(--space-1);
+    color: var(--color-text);
+    background: rgba(0, 0, 0, 0.6);
     font-size: var(--font-size-1);
 }
 
@@ -510,11 +527,16 @@ dialog .modal-header {
     height: auto;
     display: block;
     object-fit: cover;
+    max-height: 50vh;
 }
 
 @media (max-width: 600px) {
     .image-container {
         max-width: 100%;
+    }
+
+    .image-container img {
+        max-height: 240px;
     }
 
     .image-subtitle {

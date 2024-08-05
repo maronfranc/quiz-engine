@@ -71,6 +71,8 @@ function App() {
       </header>
 
       <main>
+        <h1> {quiz.title} </h1>
+        <p> {quiz.description} </p>
         <AnswerPath questionAnswers={questionAnswers} />
       </main>
 
@@ -103,7 +105,7 @@ function App() {
         </button>
 
         <button onClick={() => setIsModalOpen(true)}>
-          Open next question
+          Open question
         </button>
 
         <button
@@ -119,8 +121,9 @@ function App() {
       <QuizModal
         handleSubmitData={handleSubmit}
         isOpen={isModalOpen}
-        handleClose={handleModalClose}
-        quizQuestion={quiz.questions[currentIndex]} />
+        quizQuestion={quiz.questions[currentIndex]}
+        isAlreadyAnswered={currentIndex < questionAnswers.length}
+        handleClose={handleModalClose} />
     </div>
   );
 }
