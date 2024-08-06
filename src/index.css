@@ -474,6 +474,7 @@ dialog[open] {
     animation: slide-up 500ms forwards, fade-in 500ms forwards;
 }
 
+
 form[method="dialog"] {
     margin: 0 var(--space-3);
 }
@@ -567,7 +568,6 @@ form[method="dialog"] {
     height: auto;
     display: block;
     object-fit: cover;
-    max-width: 100%;
     max-height: 240px;
 }
 

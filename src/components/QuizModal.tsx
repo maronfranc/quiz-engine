@@ -90,6 +90,10 @@ function QuizModal({
     parentHandleSubmit(formState);
   }
 
+  const isFormValid =  formState.input !== ""
+    || formState.multipleAnswerIds.length > 0
+    || formState.singleAnswerId !== "";
+
   return <div>
     <dialog
       ref={dialogRef}
@@ -156,7 +160,7 @@ function QuizModal({
             Cancel
           </button>
           <button
-            disabled={isAlreadyAnswered}
+            disabled={isAlreadyAnswered ||!isFormValid }
             className={!isAlreadyAnswered ? "success" : "disabled"}
             type="submit">
             {!isAlreadyAnswered ? "Confirm answer" : "Already answered"}
