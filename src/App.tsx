@@ -7,6 +7,7 @@ import { Quiz } from './Quiz.interface';
 import QuizModal from './components/QuizModal';
 import AnswerPath, { QuestionAnswer } from './components/AnswerPath';
 import Parallax from './components/Parallax';
+import scrollToBottom from "./utils/scrollToBottom";
 
 interface QuizFormState {
   input: string;
@@ -33,15 +34,6 @@ function App() {
   function goToTabModal(index: number) {
     setCurrentIndex(index);
     setIsModalOpen(true);
-  }
-
-  function scrollToBottom() {
-    if (window && document) {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth',
-      });
-    }
   }
 
   function handleSubmit(formData: QuizFormState) {

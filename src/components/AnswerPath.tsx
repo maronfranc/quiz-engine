@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { QuizQuestion } from "../Quiz.interface";
 import { QuizFormState } from "./QuizModal";
+import scrollToBottom from "../utils/scrollToBottom";
 
 export interface QuestionAnswer {
   question: QuizQuestion;
@@ -21,12 +22,13 @@ function AnswerPath({
   const cardRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    const currentRef = cardRefs.current[currentIndex];
-    currentRef?.scrollIntoView({
-      behavior: "smooth",
-      block: "end",
-    });
-  }, [cardRefs, currentIndex]);
+    if (currentIndex >= questionAnswers.length - 1) {
+      scrollToBottom();
+    } else {
+      const currentRef = cardRefs.current[currentIndex];
+      currentRef?.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [cardRefs, currentIndex, questionAnswers]);
 
   return (
     <div className="answer-container">
@@ -44,7 +46,7 @@ function AnswerPath({
             <p className="description">
               {question.description}
             </p>
-            <p className="description">
+            <p className="title">
               Question: {question.question}
             </p>
 
@@ -89,7 +91,7 @@ function AnswerPath({
             <p className="description">
               {question.description}
             </p>
-            <p className="description">
+            <p className="title">
               Question: {question.question}
             </p>
             <div className="card success">
