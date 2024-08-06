@@ -1,70 +1,167 @@
 {
   "id": "1",
-  "title": "title 1",
-  "description": "description 1",
-  "imageUrl": "https://placehold.co/300x200",
+  "title": "Castlevania game quiz",
+  "description": "Castlevania: Symphony of the Night is a groundbreaking 1997 action-adventure game by Konami. Known for its non-linear gameplay, atmospheric design, and RPG elements, it follows Alucard as he explores Dracula's castle, battling monsters and uncovering secrets. It's a genre-defining classic.",
+  "imageUrl": "./castlevania/SOTN-us-cover.webp",
   "questions": [
+    {
+      "type": "v1_input_question",
+      "id": "input_question_1",
+      "imageUrl": "./castlevania/SOTN-E3NameEntry.png",
+      "title": "Name entry",
+      "description": "Memory card",
+      "question": "Give your memory card save slot a name",
+      "inputLimit": 64,
+      "questionIdToGo": "input_question_2"
+    },
     {
       "type": "v1_single_question",
       "id": "single_question_1",
-      "question": "Question <question>",
-      "title": "Title here",
-      "description": "Single question description",
-      "imageUrl": "https://placehold.co/300x200",
+      "question": "Pick one character",
+      "title": "Pick one your favorite character",
+      "description": "Alucard, Dracula’s son, is the main protagonist in Symphony of the Night, fighting to end his father's reign. Richter Belmont is the previous hero who falls under Dracula's control. Maria Renard aids Alucard, offering support and guidance with her magical abilities.",
+      "imageUrl": "",
       "choices": [
         {
           "id": "sq1_choice_1",
-          "statement": "Go to single question 2",
-          "questionIdToGo": "single_question_2"
+          "statement": "Alucard",
+          "imageUrl": "./castlevania/Character_Alucard.png"
         },
         {
           "id": "sq1_choice_2",
-          "statement": "Go to multiple question 1",
-          "questionIdToGo": "multiple_question_1"
+          "statement": "Richter Belmont",
+          "imageUrl": "./castlevania/Character_Richter_Belmont.png"
         },
         {
           "id": "sq1_choice_3",
-          "statement": "Go to input question 1",
-          "questionIdToGo": "input_question_1"
+          "statement": "Maria Renard",
+          "imageUrl": "./castlevania/Character_Maria.gif"
         }
       ]
     },
     {
       "type": "v1_multiple_question",
       "id": "multiple_question_1",
-      "question": "Question here",
-      "title": "Title here",
-      "description": "Multiple question 1",
-      "imageUrl": "https://placehold.co/300x200",
+      "title": "A Familiar question?",
+      "question": "Select your Familiar team",
+      "description": "Alucard's familiars include the Fairy (heals and guides), the Demon (attacks foes), the Ghost (collects items), the Bat (aids in navigation), and the Sword (fights alongside). Each provides distinct support to enhance gameplay.",
+      "imageUrl": "./castlevania/SotN_Japanese_Familiars.webp",
       "choices": [
         {
           "id": "mq1_choice_1",
-          "statement": "Go to multiple 2",
-          "questionIdToGo": "multiple_question_1",
-          "priority": 1
+          "statement": "Fairy Familiar",
+          "imageUrl": "./castlevania/Familiar_Fairy.png"
         },
         {
           "id": "mq1_choice_2",
-          "statement": "Go to single 1",
-          "questionIdToGo": "single_question_1",
-          "priority": 2
+          "statement": "Demon Familiar",
+          "imageUrl": "./castlevania/Familiar_Demon.png"
         },
         {
           "id": "mq1_choice_3",
-          "statement": "Go to input question 1",
-          "questionIdToGo": "input_question_1",
-          "priority": 3
+          "statement": "Sword Familiar",
+          "imageUrl": "./castlevania/Familiar_Sword.png"
+        },
+        {
+          "id": "mq1_choice_4",
+          "statement": "Bat Familiar",
+          "imageUrl": "./castlevania/Familiar_Bat.png"
+        },
+        {
+          "id": "mq1_choice_5",
+          "statement": "Chost Familiar",
+          "imageUrl": "./castlevania/Familiar_Ghost.png"
         }
       ]
     },
     {
-      "type": "v1_input_question",
-      "id": "input_question_1",
-      "question": "Question here",
-      "title": "Title here",
-      "description": "Give your caracter a name",
-      "inputLimit": 64,
-      "questionIdToGo": "input_question_2"
+      "type": "v1_multiple_question",
+      "id": "multiple_question_2",
+      "title": "High agility attacks",
+      "question": "In Symphony of the Night, which of the following enemies is known for its high agility and leaping attacks?",
+      "description": "",
+      "imageUrl": "",
+      "choices": [
+        {
+          "id": "mq2_choice_1",
+          "statement": "Skeleton",
+          "imageUrl": "./castlevania/Enemy_Skeleton.png"
+        },
+        {
+          "id": "mq2_choice_2",
+          "statement": "Zombie",
+          "imageUrl": "./castlevania/Enemy_Zombie.png"
+        },
+        {
+          "id": "mq2_choice_3",
+          "statement": "Flea Man & flea armor",
+          "imageUrl": "./castlevania/Enemy_Flea_Man_and_Flea_Armor.png",
+          "isCorrect": true
+        },
+        {
+          "id": "mq2_choice_4",
+          "statement": "Merman",
+          "imageUrl": "./castlevania/Enemy_Merman.png"
+        },
+        {
+          "id": "mq2_choice_5",
+          "statement": "Black panther",
+          "imageUrl": "./castlevania/Enemy_Black_Panther.png",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "type": "v1_single_question",
+      "id": "single_question_2",
+      "question": "In Symphony of the Night, which boss is located in the “Cave” area and is known for attacking with tentacles and summoning smaller enemies?",
+      "title": "Cave boss",
+      "description": "The Cave in Symphony of the Night is a subterranean area with eerie, rock-filled environments. It features treacherous terrain, including collapsing platforms and powerful enemies. The area is home to the boss Scylla, known for its tentacle attacks and challenging battle.",
+      "imageUrl": "./castlevania/Location_Underground_Cavern.png",
+      "choices": [
+        {
+          "id": "sq2_choice_1",
+          "statement": "Count Dracula",
+          "imageUrl": "./castlevania/Boss_Count_Dracula.png"
+        },
+        {
+          "id": "sq2_choice_2",
+          "statement": "Scylla",
+          "imageUrl": "./castlevania/Boss_Scylla.png",
+          "isCorrect": true
+        },
+        {
+          "id": "sq2_choice_3",
+          "statement": "Galamoth",
+          "imageUrl": "./castlevania/Boss_Galamoth.png"
+        }
+      ]
+    },
+    {
+      "type": "v1_single_question",
+      "id": "single_question_3",
+      "question": "In Symphony of the Night, which boss in the “Castle Keep” manipulates the castle's magic?",
+      "title": "Castle Keep",
+      "description": "The Castle Keep in Symphony of the Night is a formidable area filled with dark, gothic architecture and powerful enemies. It serves as the final segment of Dracula's castle, featuring challenging encounters, including the boss Shaft, and leading to the climax of the game.",
+      "imageUrl": "",
+      "choices": [
+        {
+          "id": "sq3_choice_1",
+          "statement": "Shaft",
+          "imageUrl": "./castlevania/Boss_Shaft.png",
+          "isCorrect": true
+        },
+        {
+          "id": "sq3_choice_2",
+          "statement": "Galamoth",
+          "imageUrl": "./castlevania/Boss_Galamoth.png"
+        },
+        {
+          "id": "sq3_choice_3",
+          "statement": "Count Dracula",
+          "imageUrl": "./castlevania/Boss_Count_Dracula.png"
+        }
+      ]
     }
   ]
 }
