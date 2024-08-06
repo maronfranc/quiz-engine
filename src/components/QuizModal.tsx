@@ -110,7 +110,6 @@ function QuizModal({
         {quizQuestion.description}
       </p>
 
-
       <form method="dialog" onSubmit={handleSubmit}>
         {quizQuestion.type === 'v1_input_question' &&
           <InputText
@@ -120,7 +119,7 @@ function QuizModal({
             placeholder={quizQuestion.question}
             ariaDescription={quizQuestion.question}
             disabled={isAlreadyAnswered}
-              limit={quizQuestion.inputLimit}
+            limit={quizQuestion.inputLimit}
             onChange={handleSingleValueChange} />}
 
         {quizQuestion.type === 'v1_single_question' &&

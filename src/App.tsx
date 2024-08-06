@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ProgressBar from './components/ProgressBar';
-import data from "../data/quiz-data.json";
 import { Quiz } from './Quiz.interface';
 import QuizModal from './components/QuizModal';
 import AnswerPath, { QuestionAnswer } from './components/AnswerPath';
 import Parallax from './components/Parallax';
+
+import data from "../data/quiz-data.json";
 const quiz = data as Quiz;
 
 interface QuizFormState {
@@ -41,10 +42,6 @@ function App() {
     setIsModalOpen(true);
   }
 
-  function handleModalClose() {
-    setIsModalOpen(false);
-  }
-
   const isFinished = questionAnswers.length === quiz.questions.length;
   const isNotAvailableYet = currentIndex >= questionAnswers.length;
   const isLastQuestion = currentIndex === quiz.questions.length - 1;
@@ -64,7 +61,10 @@ function App() {
       </header>
 
       <main>
-        <AnswerPath questionAnswers={questionAnswers} />
+        <AnswerPath 
+        questionAnswers={questionAnswers} 
+        currentIndex={currentIndex}
+        />
       </main>
 
       <aside>
@@ -90,23 +90,24 @@ function App() {
 
       <footer>
         <button
+          className="footer-btn-left"
           disabled={currentIndex === 0}
           onClick={() => goToPrevious()}>
-          &larr;
+          &larr; Previous
         </button>
 
         <button
+          className="footer-btn-next"
           disabled={isFinished}
           onClick={() => setIsModalOpen(true)}>
-          {!isFinished
-            ? "Open question"
-            : "You answered all questions"}
+          {!isFinished ? "Open question" : "Finished"}
         </button>
 
         <button
+          className="footer-btn-right"
           disabled={isNotAvailableYet || isLastQuestion}
           onClick={() => goToNext()}>
-          &rarr;
+          Next &rarr;
         </button>
       </footer>
 
@@ -115,7 +116,7 @@ function App() {
         isOpen={isModalOpen}
         quizQuestion={quiz.questions[currentIndex]}
         isAlreadyAnswered={isAlreadyAnswered}
-        handleClose={handleModalClose} />
+        handleClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
