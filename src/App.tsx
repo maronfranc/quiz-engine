@@ -23,7 +23,9 @@ function App() {
     const question = quiz.questions[currentIndex];
 
     setQuestionAnswers((prev) => [...prev, { answer: formData, question }]);
-    goToTab(Math.min(currentIndex + 1, quiz.questions.length - 1));
+
+    const nextIndex = Math.min(currentIndex + 1, quiz.questions.length - 1);
+    setCurrentIndex(nextIndex);
   }
 
   function goToPrevious() {
@@ -37,13 +39,13 @@ function App() {
     }
   }
 
-  function goToTab(index: number) {
+  function goToTabModal(index: number) {
     setCurrentIndex(index);
     setIsModalOpen(true);
   }
 
   const isFinished = questionAnswers.length === quiz.questions.length;
-  const isNotAvailableYet = currentIndex >= questionAnswers.length;
+  const isNotAvailableYet = currentIndex >= questionAnswers.length - 1;
   const isLastQuestion = currentIndex === quiz.questions.length - 1;
   const isAlreadyAnswered = currentIndex < questionAnswers.length;
 
@@ -62,21 +64,21 @@ function App() {
 
       <main>
         <AnswerPath
+          handleButtonClick={(index) => goToTabModal(index)}
           questionAnswers={questionAnswers}
-          currentIndex={currentIndex}
-        />
+          currentIndex={currentIndex} />
       </main>
 
       <aside>
         {quiz.questions.map((_, index) => {
-          const isNotReadyYet = index > questionAnswers.length;
+          const isNotReadyYet = index >= questionAnswers.length;
           const current = index === currentIndex && "accent";
           const answered = index < questionAnswers.length && "success";
           return <button
             disabled={isNotReadyYet}
             className={`btn-sidebar ${current || answered}`}
             key={index}
-            onClick={() => goToTab(index)}>
+            onClick={() => setCurrentIndex(index)}>
             {index + 1}
 
             <span className="sr-only">
@@ -97,8 +99,8 @@ function App() {
 
         <button
           disabled={isFinished}
-          onClick={() => setIsModalOpen(true)}>
-          {!isFinished ? "Open question" : "Finished"}
+          onClick={() => goToTabModal(questionAnswers.length)}>
+          {!isFinished ? "Next question" : "Finished"}
         </button>
 
         <button
@@ -110,10 +112,10 @@ function App() {
 
       <QuizModal
         handleSubmitData={handleSubmit}
+        handleClose={() => setIsModalOpen(false)}
         isOpen={isModalOpen}
         quizQuestion={quiz.questions[currentIndex]}
-        isAlreadyAnswered={isAlreadyAnswered}
-        handleClose={() => setIsModalOpen(false)} />
+        isAlreadyAnswered={isAlreadyAnswered} />
     </div>
   );
 }

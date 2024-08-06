@@ -575,6 +575,17 @@ form[method="dialog"] {
     border: 1px solid var(--color-border);
 }
 
+.answer-button-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: var(--space-3);
+}
+
+.answer-button-container button {
+    padding: var(--space-3) var(--space-4);
+}
+
 /* ===== ===== Image ===== ===== */
 .image-subtitle {
     position: absolute;

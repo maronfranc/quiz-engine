@@ -159,7 +159,7 @@ function QuizModal({
             disabled={isAlreadyAnswered}
             className={!isAlreadyAnswered ? "success" : "disabled"}
             type="submit">
-            Confirm answer
+            {!isAlreadyAnswered ? "Confirm answer" : "Already answered"}
           </button>
         </div>
       </form>

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { QuizQuestion } from "../Quiz.interface";
 import { QuizFormState } from "./QuizModal";
 
@@ -9,15 +10,29 @@ export interface QuestionAnswer {
 interface Props {
   questionAnswers: QuestionAnswer[];
   currentIndex: number;
+  handleButtonClick: (index: number) => void;
 }
 
-function AnswerPath({ questionAnswers, currentIndex }: Props) {
+function AnswerPath({
+  questionAnswers,
+  currentIndex,
+  handleButtonClick: parentHandleButtonClick,
+}: Props) {
+  const cardRefs = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    const currentRef = cardRefs.current[currentIndex];
+    currentRef?.scrollIntoView({ behavior: "smooth" });
+  }, [currentIndex]);
+
   return (
     <div className="answer-container">
       {questionAnswers.map((q, index) => {
         const { question, answer } = q;
         if (question.type === 'v1_single_question' || question.type === 'v1_multiple_question') {
+
           return <div
+            ref={el => el && (cardRefs.current[index] = el)}
             className={`answer-card ${currentIndex === index && "selected"}`}
             key={index}>
             <h2 className="title">
@@ -41,24 +56,25 @@ function AnswerPath({ questionAnswers, currentIndex }: Props) {
                 })
                 .map((c) => (
                   <div
+                    key={c.id}
                     className={`image-container card ${c.id === answer.singleAnswerId ||
                       answer.multipleAnswerIds.includes(c.id) ? "success" : "danger"}  `}
                     style={{
                       backgroundImage: c.imageUrl && `url(${c.imageUrl})`,
                       backgroundSize: c.imageUrl && "cover",
                       backgroundPosition: c.imageUrl && "center",
-                    }}
-                  >
+                    }}>
                     {c.statement}
                   </div>
                 ))
               }
             </div>
           </div>
-        }
-
-        if (question.type === 'v1_input_question') {
-          return <div className={`answer-card ${currentIndex === index && "selected"}`} key={index}>
+        } else if (question.type === 'v1_input_question') {
+          return <div
+            ref={el => el && (cardRefs.current[index] = el)}
+            className={`answer-card ${currentIndex === index && "selected"}`}
+            key={index}>
             <h2 className="title">
               {index + 1}. {question.title}
             </h2>
@@ -72,6 +88,12 @@ function AnswerPath({ questionAnswers, currentIndex }: Props) {
               <p className="title">
                 {answer.input}
               </p>
+            </div>
+
+            <div className="answer-button-container">
+              <button onClick={() => parentHandleButtonClick(index)}>
+                Open question {index + 1}
+              </button>
             </div>
           </div>
         }
