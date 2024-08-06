@@ -117,7 +117,7 @@
       "question": "In Symphony of the Night, which boss is located in the “Cave” area and is known for attacking with tentacles and summoning smaller enemies?",
       "title": "Cave boss",
       "description": "The Cave in Symphony of the Night is a subterranean area with eerie, rock-filled environments. It features treacherous terrain, including collapsing platforms and powerful enemies. The area is home to the boss Scylla, known for its tentacle attacks and challenging battle.",
-      "imageUrl": "./castlevania/Location_Underground_Cavern.png",
+      "imageUrl": "",
       "choices": [
         {
           "id": "sq2_choice_1",

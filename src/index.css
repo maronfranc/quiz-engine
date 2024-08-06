@@ -573,7 +573,7 @@ form[method="dialog"] {
 
 /* ===== ===== Finished ===== ===== */
 .finished-container {
-    background-color: var(--color-primary-bg);
+    background-color: var(--color-accent);
     padding: var(--space-4) var(--space-4) calc(var(--bottom-bar-height) + 32px) var(--space-4);
     display: flex;
     flex-direction: column;
