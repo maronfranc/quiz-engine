@@ -149,12 +149,15 @@ function QuizModal({
             onChange={handleMultipleValueChange} />}
 
         <div className="modal-button-container space-between">
-          <button type="button" className="secondary" onClick={closeModal}>
+          <button
+            type="button"
+            className="secondary"
+            onClick={closeModal}>
             Cancel
           </button>
           <button
             disabled={isAlreadyAnswered}
-            className={!isAlreadyAnswered ? "primary" : "disabled"}
+            className={!isAlreadyAnswered ? "success" : "disabled"}
             type="submit">
             Confirm answer
           </button>

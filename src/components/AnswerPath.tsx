@@ -15,13 +15,6 @@ function AnswerPath({ questionAnswers, currentIndex }: Props) {
   return (
     <div className="answer-container">
       {questionAnswers.map((q, index) => {
-        if (currentIndex === index) {
-          console.table({
-            currentIndex,
-            index,
-            bool: currentIndex === index,
-          });
-        }
         const { question, answer } = q;
         if (question.type === 'v1_single_question' || question.type === 'v1_multiple_question') {
           return <div

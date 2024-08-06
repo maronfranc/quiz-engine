@@ -53,13 +53,17 @@
     --color-disabled: #c0c0c0;
     --color-disabled-text: #ecf0f1;
 
-    --color-accent: #02115e;
+    --color-accent: #1b2e94;
+
     --color-bg: #d1d1d1;
     --color-bg-checked: maroon;
     --color-border: #ccc;
+
+    /* --breakpoint-tablet: 768px;  */
+    /* --breakpoint-desktop: 992px;  */
 }
 
-@media screen and (min-width: 800px) {
+@media (min-width: 768px) {
     :root {
         /* scale for 1.33 */
         --font-size-1: 1rem;
@@ -72,16 +76,11 @@
 }
 
 body,
-html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-
+html,
 #root {
-    height: 100%;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 h1 {
@@ -100,20 +99,19 @@ h1 {
     border: 0;
 }
 
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop-only {
+    display: inline-block;
+  }
+}
+
 .space-between {
     display: flex;
     justify-content: space-between;
-}
-
-.card {
-    padding: var(--space-2) var(--space-1);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    text-align: center;
-    text-justify: distribute;
-    min-height: 100px;
-    min-width: 100px;
-    margin: 0 auto;
 }
 
 .title {
@@ -135,6 +133,17 @@ h1 {
     font-size: var(--font-size-3);
     line-height: 1.4;
     padding: var(--space-2);
+}
+
+.card {
+    padding: var(--space-2) var(--space-1);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    text-align: center;
+    text-justify: distribute;
+    min-height: 100px;
+    min-width: 100px;
+    margin: 0 auto;
 }
 
 /* ===== ===== Parallax ===== ===== */
@@ -199,12 +208,16 @@ h1 {
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-content: center;
 }
 
 .grid main {
     margin: var(--progress-bar-height) var(--sidebar-width) 0 0;
-    padding-bottom: 120px;
+    padding-bottom: 64px;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .grid aside {
@@ -225,11 +238,19 @@ h1 {
     left: 0;
     right: 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: transparent;
     max-height: var(--bottom-bar-height);
     padding: var(--space-3) var(--space-4);
+    margin: 0;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+    .grid footer {
+        justify-content: center;
+        gap: var(--space-4);
+    }
 }
 
 /* ===== ===== Color ===== ===== */
@@ -264,7 +285,7 @@ button {
     font-size: var(--font-size-1);
     border-radius: var(--border-radius);
     text-transform: uppercase;
-    background-color: var(--color-secondary-bg);
+    background-color: var(--color-accent);
     color: var(--color-secondary-text);
 }
 
@@ -289,6 +310,10 @@ button.primary:hover {
 
 button.secondary:hover {
     background-color: var(--color-secondary-bg-hover);
+}
+
+button.accent:hover {
+    background-color: var(--color-accent-bg-hover);
 }
 
 button.success:hover {
@@ -335,16 +360,22 @@ button.danger:hover {
 aside button {
     margin: var(--space-1) 0;
     border-radius: var(--border-radius) 0 0 var(--border-radius);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 /* ===== ===== ===== Footer ===== ===== ===== */
 .grid footer button {
-    border-radius:  var(--border-radius) var(--border-radius) 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); 
-    padding: var(--space-3);
+    border-radius: var(--border-radius) var(--border-radius) 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
     text-wrap: nowrap;
     min-width: 120px;
+}
+
+@media screen and (min-width: 576px) {
+    .grid footer button {
+        gap: 5px;
+        padding: var(--space-3);
+    }
 }
 
 /* ===== ===== ===== Form ===== ===== ===== */
@@ -527,12 +558,7 @@ form[method="dialog"] {
 /* ===== ===== Answer ===== ===== */
 .answer-container {
     display: flex;
-}
-
-@media (max-width: 800px) {
-    .answer-container {
-        display: block;
-    }
+    flex-direction: column;
 }
 
 .answer-card {
@@ -542,6 +568,7 @@ form[method="dialog"] {
     border-radius: var(--border-radius);
     background-color: var(--color-secondary-bg);
     color: var(--color-secondary-text);
+    max-width: 700px;
 }
 
 .answer-card.selected {
@@ -569,7 +596,7 @@ form[method="dialog"] {
     max-height: 50vh;
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .image-container {
         max-width: 100%;
     }

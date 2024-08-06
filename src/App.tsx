@@ -61,9 +61,9 @@ function App() {
       </header>
 
       <main>
-        <AnswerPath 
-        questionAnswers={questionAnswers} 
-        currentIndex={currentIndex}
+        <AnswerPath
+          questionAnswers={questionAnswers}
+          currentIndex={currentIndex}
         />
       </main>
 
@@ -90,24 +90,21 @@ function App() {
 
       <footer>
         <button
-          className="footer-btn-left"
           disabled={currentIndex === 0}
           onClick={() => goToPrevious()}>
-          &larr; Previous
+          &larr; <span className="desktop-only">Previous</span>
         </button>
 
         <button
-          className="footer-btn-next"
           disabled={isFinished}
           onClick={() => setIsModalOpen(true)}>
           {!isFinished ? "Open question" : "Finished"}
         </button>
 
         <button
-          className="footer-btn-right"
           disabled={isNotAvailableYet || isLastQuestion}
           onClick={() => goToNext()}>
-          Next &rarr;
+          <span className="desktop-only">Next</span> &rarr;
         </button>
       </footer>
 
