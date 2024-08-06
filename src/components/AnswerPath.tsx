@@ -28,8 +28,12 @@ function AnswerPath({ questionAnswers }: Props) {
             </p>
 
             <div className="space-between">
-              {question.choices.map((c) => (
-                <div
+              {question.choices.map((c) => {
+                if (answer.multipleAnswerIds.length !== 0 &&
+                  !answer.multipleAnswerIds.includes(c.id)) return null;
+                if (answer.singleAnswerId && c.id !== answer.singleAnswerId) return null;
+
+                return <div
                   className={`image-container card ${c.id === answer.singleAnswerId ||
                     answer.multipleAnswerIds.includes(c.id) ? "success" : "danger"}  `}
                   style={{
@@ -39,7 +43,9 @@ function AnswerPath({ questionAnswers }: Props) {
                   }}
                 >
                   {c.statement}
-                </div>))}
+                </div>
+              })
+              }
             </div>
           </div>
         }
@@ -56,7 +62,9 @@ function AnswerPath({ questionAnswers }: Props) {
               Question: {question.question}
             </p>
             <div className="card success">
-              {answer.input}
+              <p className="title">
+                {answer.input}
+              </p>
             </div>
           </div>
         }

@@ -37,10 +37,8 @@ function App() {
   }
 
   function goToTab(index: number) {
-    if (index !== currentIndex) {
-      setCurrentIndex(index);
-      setIsModalOpen(true);
-    }
+    setCurrentIndex(index);
+    setIsModalOpen(true);
   }
 
   function handleModalClose() {
@@ -80,6 +78,7 @@ function App() {
             key={index}
             onClick={() => goToTab(index)}>
             {index + 1}
+
             <span className="sr-only">
               {!isNotReadyYet
                 ? `Open question number: ${index + 1}.`

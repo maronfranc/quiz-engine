@@ -82,8 +82,8 @@ function QuizModal({
     }
   }
 
-  function handleMultipleValueChange(data: string[]) {
-    setFormState((prev) => ({ ...prev, multipleAnswerIds: data }));
+  function handleMultipleValueChange(values: string[]) {
+    setFormState((prev) => ({ ...prev, multipleAnswerIds: values }));
   }
 
   function handleSubmit() {
@@ -117,9 +117,10 @@ function QuizModal({
             id={quizQuestion.id}
             label={quizQuestion.question}
             value={formState.input}
-            placeholder="Type your answer here"
+            placeholder={quizQuestion.question}
             ariaDescription={quizQuestion.question}
             disabled={isAlreadyAnswered}
+              limit={quizQuestion.inputLimit}
             onChange={handleSingleValueChange} />}
 
         {quizQuestion.type === 'v1_single_question' &&
@@ -154,7 +155,8 @@ function QuizModal({
           </button>
           <button
             disabled={isAlreadyAnswered}
-            className="primary" type="submit">
+            className={!isAlreadyAnswered ? "primary" : "disabled"}
+            type="submit">
             Confirm answer
           </button>
         </div>

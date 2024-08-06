@@ -110,6 +110,10 @@ h1 {
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     text-align: center;
+    text-justify: distribute;
+    min-height: 100px;
+    min-width: 100px;
+    margin: 0 auto;
 }
 
 .title {
@@ -228,8 +232,6 @@ h1 {
     max-height: var(--bottom-bar-height);
     padding: var(--space-3) var(--space-4);
 }
-
-
 
 /* ===== ===== Color ===== ===== */
 .primary {

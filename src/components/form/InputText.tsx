@@ -8,6 +8,7 @@ interface Props {
   disabled: boolean;
   placeholder?: string;
   ariaDescription?: string;
+  limit?: number;
 }
 
 function InputText({
@@ -18,6 +19,7 @@ function InputText({
   placeholder,
   ariaDescription,
   disabled,
+  limit,
 }: Props) {
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     parentOnChange(e.target.value);
@@ -41,6 +43,7 @@ function InputText({
           placeholder={placeholder}
           aria-labelledby={`${id}-label`}
           disabled={disabled}
+          maxLength={limit}
           aria-describedby={ariaDescribedBy} />
       </div>
 
