@@ -72,6 +72,11 @@ function AnswerPath({
                 ))
               }
             </div>
+            <div className="answer-button-container">
+              <button onClick={() => parentHandleButtonClick(index)}>
+                Open question
+              </button>
+            </div>
           </div>
         } else if (question.type === 'v1_input_question') {
           return <div
@@ -95,7 +100,7 @@ function AnswerPath({
 
             <div className="answer-button-container">
               <button onClick={() => parentHandleButtonClick(index)}>
-                Open question {index + 1}
+                Open question
               </button>
             </div>
           </div>

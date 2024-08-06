@@ -52,12 +52,16 @@ function App() {
     setCurrentIndex(nextIndex);
 
     /** 
-     * FIXME: using this function here as a workarond for what seems to be a cycle bug.
+     * FIXME: using this function here as a workarond for what seems to be a render cycle bug.
      * - The apparent render cycle bug is 1:
-     *   1. The `setCurrentIndex(nextIndex)` trigger a scroll animation inside the card component.
+     *   1. The `setCurrentIndex(nextIndex)` trigger a scroll animation inside the card component;
      *   2. But the animation runs before the component is rendered in the page. 
-     * The apparent render cycle bug is 2:
+     * - The apparent render cycle bug is 2:
      *   1. The `setCurrentIndex(nextIndex)` is being set from N to N+1 and back to N somewhere.
+     * - The apparent render cycle bug is 3:
+     *   1. The `setCurrentIndex(nextIndex)` is breaking `quiz.questions[currentIndex]`.
+     *
+     * The expected behavior after fix: is to delete this function and the card component will scroll to next item automatically.
      */
     async function scrollDelay() {
       const ANIMATION_DELAY_MS = 250;
@@ -132,6 +136,19 @@ function App() {
           <span className="desktop-only">Next</span> &rarr;
         </button>
       </footer>
+
+      {isFinished &&
+        <div className="finished-container">
+          <h2 className="title">
+            Quiz is finished
+          </h2>
+          <p className="description">
+            [Dev: Work in progress] "<b>Submit quiz answers</b>" and <b>thank you</b> page not implemented yet.
+          </p>
+          <button disabled={true}>
+            Submit quiz answers
+          </button>
+        </div>}
 
       <QuizModal
         handleSubmitData={handleSubmit}

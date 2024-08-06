@@ -3,7 +3,7 @@
     line-height: 1.5;
     font-weight: 400;
 
-    color-scheme: light dark;
+    color-scheme: dark;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -42,9 +42,9 @@
     --color-success-text: var(--color-text);
     --color-success-bg-hover: #4caf50;
 
-    --color-warning: #bf7a0b;
+    /*--color-warning: #bf7a0b;
     --color-warning-text: var(--color-text);
-    --color-warning-bg-hover: #f39c12;
+    --color-warning-bg-hover: #f39c12; */
 
     --color-danger: #781616;
     --color-danger-text: var(--color-text);
@@ -59,12 +59,10 @@
     --color-bg: #d1d1d1;
     --color-bg-checked: maroon;
     --color-border: #898ca1;
-    /* #747787; */
-    /* #898ca1 */
 
-    /* --breakpoint-mobile: 480px;  */
-    /* --breakpoint-tablet: 768px;  */
-    /* --breakpoint-desktop: 992px;  */
+    /*--breakpoint-mobile: 480px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-desktop: 992px; */
 }
 
 @media (min-width: 768px) {
@@ -242,27 +240,6 @@ h1 {
     padding: var(--space-3) var(--space-4);
     margin: 0;
     justify-content: space-between;
-}
-
-/* ===== ===== Color ===== ===== */
-.primary {
-    background-color: var(--color-primary-bg);
-    color: var(--color-primary-text);
-}
-
-.accent {
-    background-color: var(--color-accent);
-    color: var(--color-secondary-text);
-}
-
-.success {
-    background-color: var(--color-success);
-    color: var(--color-success-text);
-}
-
-.danger {
-    background-color: var(--color-danger);
-    color: var(--color-danger-text);
 }
 
 /* ===== ===== Button ===== ===== */
@@ -594,6 +571,39 @@ form[method="dialog"] {
     max-height: 240px;
 }
 
+/* ===== ===== Finished ===== ===== */
+.finished-container {
+    background-color: var(--color-primary-bg);
+    padding: var(--space-4) var(--space-4) calc(var(--bottom-bar-height) + 32px) var(--space-4);
+    display: flex;
+    flex-direction: column;
+}
+
+.finished-container button {
+    margin: var(--space-3) 0  var(--space-4) 0;
+}
+
+/* ===== ===== Color ===== ===== */
+.primary {
+    background-color: var(--color-primary-bg);
+    color: var(--color-primary-text);
+}
+
+.accent {
+    background-color: var(--color-accent);
+    color: var(--color-secondary-text);
+}
+
+.success {
+    background-color: var(--color-success);
+    color: var(--color-success-text);
+}
+
+.danger {
+    background-color: var(--color-danger);
+    color: var(--color-danger-text);
+}
+
 /* ===== ===== Medias ===== ===== */
 @media screen and (min-width: 480px) {
     .grid footer button {
@@ -617,3 +627,4 @@ form[method="dialog"] {
         display: inline-block;
     }
 }
+

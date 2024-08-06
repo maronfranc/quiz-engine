@@ -13,7 +13,9 @@ function ProgressBar({ value, total, label }: Props) {
       aria-valuenow={value}
       aria-valuemin={0}
       aria-valuemax={total}>
-      <div className="progress-bar" style={{ width: `${percentage}%` }}></div>
+      <div
+        className={`progress-bar ${percentage >= 100 && "success"}`}
+        style={{ width: `${percentage}%` }}></div>
       <span className="progress-bar-label">
         {label}: {Math.round(percentage)}%
       </span>
