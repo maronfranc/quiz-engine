@@ -54,11 +54,13 @@
     --color-disabled-text: #ecf0f1;
 
     --color-accent: #1b2e94;
+    --color-accent-bg-hover: #2139bf;
 
     --color-bg: #d1d1d1;
     --color-bg-checked: maroon;
     --color-border: #ccc;
 
+    /* --breakpoint-mobile: 480px;  */
     /* --breakpoint-tablet: 768px;  */
     /* --breakpoint-desktop: 992px;  */
 }
@@ -100,13 +102,7 @@ h1 {
 }
 
 .desktop-only {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .desktop-only {
-    display: inline-block;
-  }
+    display: none;
 }
 
 .space-between {
@@ -246,13 +242,6 @@ h1 {
     justify-content: space-between;
 }
 
-@media screen and (min-width: 768px) {
-    .grid footer {
-        justify-content: center;
-        gap: var(--space-4);
-    }
-}
-
 /* ===== ===== Color ===== ===== */
 .primary {
     background-color: var(--color-primary-bg);
@@ -339,6 +328,7 @@ button.danger:hover {
     display: flex;
     align-items: center;
     background-color: #000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 .progress-bar {
@@ -363,19 +353,12 @@ aside button {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
-/* ===== ===== ===== Footer ===== ===== ===== */
+/* ===== ===== ===== Footer Style ===== ===== ===== */
 .grid footer button {
     border-radius: var(--border-radius) var(--border-radius) 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
     text-wrap: nowrap;
-    min-width: 120px;
-}
-
-@media screen and (min-width: 576px) {
-    .grid footer button {
-        gap: 5px;
-        padding: var(--space-3);
-    }
+    min-width: 32px;
 }
 
 /* ===== ===== ===== Form ===== ===== ===== */
@@ -492,6 +475,7 @@ dialog .modal-button-container {
 
 dialog p.description {
     margin-left: var(--space-3);
+    font-size: var(--font-size-2)
 }
 
 dialog::-webkit-backdrop,
@@ -604,20 +588,30 @@ form[method="dialog"] {
     height: auto;
     display: block;
     object-fit: cover;
-    max-height: 50vh;
+    max-width: 100%;
+    max-height: 240px;
 }
 
-@media screen and (max-width: 600px) {
-    .image-container {
-        max-width: 100%;
+/* ===== ===== Medias ===== ===== */
+@media screen and (min-width: 480px) {
+    .grid footer button {
+        gap: var(--space-1);
+        padding: var(--space-2);
+        min-width: 128px;
     }
 
     .image-container img {
-        max-height: 240px;
+        max-height: 50vh;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .grid footer {
+        justify-content: center;
+        gap: var(--space-4);
     }
 
-    .image-subtitle {
-        font-size: 1em;
-        padding: var(--space-1);
+    .desktop-only {
+        display: inline-block;
     }
 }
