@@ -22,7 +22,10 @@ function AnswerPath({
 
   useEffect(() => {
     const currentRef = cardRefs.current[currentIndex];
-    currentRef?.scrollIntoView({ behavior: "smooth" });
+    currentRef?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+    });
   }, [cardRefs, currentIndex]);
 
   return (

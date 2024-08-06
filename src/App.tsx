@@ -1,12 +1,12 @@
+import jsonData from "../data/quiz-data.json";
+const quiz = jsonData as Quiz;
+
 import { useState } from 'react';
 import ProgressBar from './components/ProgressBar';
 import { Quiz } from './Quiz.interface';
 import QuizModal from './components/QuizModal';
 import AnswerPath, { QuestionAnswer } from './components/AnswerPath';
 import Parallax from './components/Parallax';
-
-import data from "../data/quiz-data.json";
-const quiz = data as Quiz;
 
 interface QuizFormState {
   input: string;
@@ -18,15 +18,6 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [questionAnswers, setQuestionAnswers] = useState<QuestionAnswer[]>([]);
-
-  function handleSubmit(formData: QuizFormState) {
-    const question = quiz.questions[currentIndex];
-
-    setQuestionAnswers((prev) => [...prev, { answer: formData, question }]);
-
-    const nextIndex = Math.min(currentIndex + 1, quiz.questions.length - 1);
-    setCurrentIndex(nextIndex);
-  }
 
   function goToPrevious() {
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
@@ -42,6 +33,38 @@ function App() {
   function goToTabModal(index: number) {
     setCurrentIndex(index);
     setIsModalOpen(true);
+  }
+
+  function scrollToBottom() {
+    if (window && document) {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }
+
+  function handleSubmit(formData: QuizFormState) {
+    const question = quiz.questions[currentIndex];
+    const nextIndex = Math.min(currentIndex + 1, quiz.questions.length - 1);
+
+    setQuestionAnswers((prev) => [...prev, { answer: formData, question }]);
+    setCurrentIndex(nextIndex);
+
+    /** 
+     * FIXME: using this function here as a workarond for what seems to be a cycle bug.
+     * - The apparent render cycle bug is 1:
+     *   1. The `setCurrentIndex(nextIndex)` trigger a scroll animation inside the card component.
+     *   2. But the animation runs before the component is rendered in the page. 
+     * The apparent render cycle bug is 2:
+     *   1. The `setCurrentIndex(nextIndex)` is being set from N to N+1 and back to N somewhere.
+     */
+    async function scrollDelay() {
+      const ANIMATION_DELAY_MS = 250;
+      await new Promise<void>(resolve => setTimeout(resolve, ANIMATION_DELAY_MS));
+      scrollToBottom();
+    }
+    scrollDelay();
   }
 
   const isFinished = questionAnswers.length === quiz.questions.length;
